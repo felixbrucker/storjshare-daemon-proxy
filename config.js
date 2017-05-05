@@ -2,7 +2,8 @@ module.exports = {
   basicAuth: {
     users: {
       'admin': 'secret',
-    }
+    },
+    unauthorizedResponse: "Unauthorized",
   },
   proxy: {
     hostname: 'localhost',
