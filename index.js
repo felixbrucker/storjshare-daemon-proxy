@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const basicAuth = require('express-basic-auth')
+const basicAuth = require('express-basic-auth');
 
 const config = require('./config');
 const routes = require('./routes');
