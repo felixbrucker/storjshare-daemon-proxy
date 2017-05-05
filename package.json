@@ -1,0 +1,17 @@
+{
+  "name": "storjshare-daemon-proxy",
+  "description": "reverse proxy which makes storjshare-daemon api available via http with basic-auth",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "repository": "https://github.com/felixbrucker/storjshare-daemon-proxy.git",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dnode": "^1.2.2",
+    "express": "^4.15.2",
+    "express-basic-auth": "^1.0.2"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
