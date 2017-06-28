@@ -17,11 +17,12 @@ function executeMethod(req, res) {
 
     return;
   }
-  const sock = dnode.connect(config.storjshareDaemon.hostname, config.storjshareDaemon.port);
+  let sock = dnode.connect(config.storjshareDaemon.hostname, config.storjshareDaemon.port);
 
   sock.on('error', () => {
     console.log('failed to connect to storjshare-daemon');
     res.send(JSON.stringify({result: false, error: 'failed to connect to storjshare-daemon', data: null}));
+    sock = null;
 
     return;
   });
@@ -36,6 +37,7 @@ function executeMethod(req, res) {
         return;
       }
       res.send(JSON.stringify({result:true, error: '', data: result}));
+      sock = null;
 
       return;
     };
