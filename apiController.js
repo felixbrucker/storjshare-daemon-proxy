@@ -20,9 +20,9 @@ function executeMethod(req, res) {
   let sock = dnode.connect(config.storjshareDaemon.hostname, config.storjshareDaemon.port);
 
   sock.on('error', () => {
+    sock = null;
     console.log('failed to connect to storjshare-daemon');
     res.send(JSON.stringify({result: false, error: 'failed to connect to storjshare-daemon', data: null}));
-    sock = null;
 
     return;
   });
@@ -30,6 +30,7 @@ function executeMethod(req, res) {
   sock.on('remote', (remote) => {
     const resHandler = (err, result) => {
       sock.end();
+      sock = null;
       if (err) {
         console.log(`query "${method}" returned an error: ${err.toString()}`);
         res.send(JSON.stringify({result: false, error: err.toString(), data: null}));
@@ -37,7 +38,6 @@ function executeMethod(req, res) {
         return;
       }
       res.send(JSON.stringify({result:true, error: '', data: result}));
-      sock = null;
 
       return;
     };
