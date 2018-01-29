@@ -1,11 +1,8 @@
-const dnode = require('dnode');
+const { execSync } = require('child_process');
 const config = require('./config');
 
 const methods = [
   'status',
-  'start',
-  'stop',
-  'restart',
 ];
 
 function executeMethod(req, res) {
@@ -17,36 +14,9 @@ function executeMethod(req, res) {
 
     return;
   }
-  let sock = dnode.connect(config.storjshareDaemon.hostname, config.storjshareDaemon.port);
+  const stats = JSON.parse(execSync(`storjshare status --json`).toString().trim());
 
-  sock.on('error', () => {
-    sock = null;
-    console.log('failed to connect to storjshare-daemon');
-    res.send(JSON.stringify({result: false, error: 'failed to connect to storjshare-daemon', data: null}));
-
-    return;
-  });
-
-  sock.on('remote', (remote) => {
-    const resHandler = (err, result) => {
-      sock.end();
-      sock = null;
-      if (err) {
-        console.log(`query "${method}" returned an error: ${err.toString()}`);
-        res.send(JSON.stringify({result: false, error: err.toString(), data: null}));
-
-        return;
-      }
-      res.send(JSON.stringify({result:true, error: '', data: result}));
-
-      return;
-    };
-    if (req.body.param) {
-      remote[method](req.body.param, resHandler);
-    } else {
-      remote[method](resHandler);
-    }
-  });
+  return res.send(JSON.stringify({result:true, error: '', data: stats}));
 }
 
 module.exports = {
