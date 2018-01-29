@@ -5,16 +5,17 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/felixbrucker/storjshare-daemon-proxy.git",
   "dependencies": {
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.18.2",
+    "commander": "^2.13.0",
     "dnode": "^1.2.2",
-    "express": "^4.15.2",
-    "express-basic-auth": "^1.0.2"
+    "express": "^4.16.2",
+    "express-basic-auth": "^1.1.3"
   },
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "engines" : {
-    "node" : ">=7.6.0"
+  "engines": {
+    "node": ">=7.6.0"
   }
 }

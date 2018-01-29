@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   const apiController = require('./apiController');
 
-  router.get('/:method', apiController.executeMethod);
+  router.get('/status', apiController.executeStatus);
 
   app.use('/', router);
 };

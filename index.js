@@ -12,6 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
+config.basicAuth.challenge = true;
 app.use(basicAuth(config.basicAuth));
 
 app.use(bodyParser.json({
