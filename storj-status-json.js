@@ -22,6 +22,6 @@ sock.on('remote', (remote) => {
       console.log(JSON.stringify({result: false, error: err.toString(), data: null}));
       return;
     }
-    console.log(JSON.stringify({result:true, error: '', data: result}));
+    console.log(JSON.stringify({result:true, error: null, data: result}));
   });
 });
