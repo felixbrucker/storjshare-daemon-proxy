@@ -18,6 +18,20 @@ GET /status
 {
   "result": Boolean,
   "error": String,
-  "data": Object - optional if api returns something
+  "data": Object
+}
+```
+
+----
+
+```
+GET /restart?node=all
+```
+
+#### Response:
+```
+{
+  "result": Boolean,
+  "error": String
 }
 ```

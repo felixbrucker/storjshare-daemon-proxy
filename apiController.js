@@ -7,6 +7,13 @@ function executeStatus(req, res) {
   res.send(execSync(`node storj-status-json --host ${config.storjshareDaemon.hostname} --port ${config.storjshareDaemon.port}`, {timeout: 60 * 1000}).toString().trim());
 }
 
+function executeRestart(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  // work around dnode mem leak
+  res.send(execSync(`node storj-restart-json --host ${config.storjshareDaemon.hostname} --port ${config.storjshareDaemon.port} --node ${req.query.node}`, {timeout: 60 * 1000}).toString().trim());
+}
+
 module.exports = {
   executeStatus,
+  executeRestart,
 };
