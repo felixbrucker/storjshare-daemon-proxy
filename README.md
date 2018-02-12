@@ -25,7 +25,7 @@ GET /status
 ----
 
 ```
-GET /restart?node=all
+GET /restart?node=<all|NODEID>
 ```
 
 #### Response:
